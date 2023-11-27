@@ -5,7 +5,7 @@ class Category extends Equatable {
   final String name;
   final String imageUrl;
 
-  Category({
+  const Category({
     required this.name,
     required this.imageUrl,
   });
@@ -14,7 +14,7 @@ class Category extends Equatable {
   // TODO: implement props
   List<Object?> get props => [name, imageUrl];
 
-  static List<Category> categories = [
+  static List<Category> categories = const [
     Category(
       name: 'Soft Drinks',
       imageUrl:

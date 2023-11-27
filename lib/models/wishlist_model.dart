@@ -6,7 +6,7 @@ import 'package:ecommerce_project/models/models.dart';
 class Wishlist extends Equatable {
   final List<Product> products;
 
-  Wishlist({
+  const Wishlist({
     this.products = const <Product>[],
   });
 

@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerce_project/blocs/cart/cart_bloc.dart';
 import 'package:ecommerce_project/blocs/wishlist/wishlist_bloc.dart';
 import 'package:ecommerce_project/models/product_model.dart';
 import 'package:ecommerce_project/widgets/custom_appbar.dart';
@@ -60,14 +61,27 @@ class ProductScreen extends StatelessWidget {
                         ));
                   },
                 ),
-                ElevatedButton(
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                    onPressed: () {},
-                    child: Text(
-                      'ADD TO CART',
-                      style: Theme.of(context).textTheme.headline3,
-                    ))
+                BlocBuilder<CartBloc, CartState>(
+                  builder: (context, state) {
+                    return ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white),
+                        onPressed: () {
+                          context
+                              .read<CartBloc>()
+                              .add(CartProductAdded(product));
+
+                          const snackBar = SnackBar(
+                              backgroundColor: Colors.black,
+                              content: Text('Added to your Cart!'));
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        },
+                        child: Text(
+                          'ADD TO CART',
+                          style: Theme.of(context).textTheme.headline3,
+                        ));
+                  },
+                )
               ],
             ),
           ),

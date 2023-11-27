@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:ecommerce_project/blocs/wishlist/wishlist_bloc.dart';
 import 'package:ecommerce_project/widgets/custom_appbar.dart';
 import 'package:ecommerce_project/widgets/custom_navbar.dart';
@@ -26,8 +28,11 @@ class WishlistScreen extends StatelessWidget {
       body: BlocBuilder<WishlistBloc, WishlistState>(
         builder: (context, state) {
           if (state is WishlistLoading) {
-            return const Center(
-              child: CircularProgressIndicator(color: Colors.black),
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                  child: Text('You have not added any product yet.',
+                      style: Theme.of(context).textTheme.headline2)),
             );
           } else if (state is WishlistLoaded) {
             return GridView.builder(
