@@ -18,6 +18,19 @@ class WishlistScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+        create: (context) => WishlistBloc()..add(StartWishlist()),
+        child: WishListView());
+  }
+}
+
+class WishListView extends StatelessWidget {
+  const WishListView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(
         title: 'Your Wishlist',
