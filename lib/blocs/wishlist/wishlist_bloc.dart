@@ -16,12 +16,6 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
       } else if (event is RemoveWishlistProduct) {
         _onRemoveWishlistProduct(event, emit);
       }
-      // on<StartWishlist>((event, emit) async {
-      //   await Future.delayed(Duration.zero)
-      //       .whenComplete(() => _onStartWishlist(event, emit));
-      // });
-      // on<AddWishlistProduct>(_onAddWishlistProduct);
-      // on<RemoveWishlistProduct>(_onRemoveWishlistProduct);
     });
   }
 
@@ -31,7 +25,6 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
   }
 
   void _onAddWishlistProduct(event, Emitter<WishlistState> emit) {
-    //print('Product fucking added');
     final state = this.state;
     if (state is WishlistLoaded) {
       try {

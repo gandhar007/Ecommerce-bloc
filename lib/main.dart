@@ -1,3 +1,4 @@
+import 'package:ecommerce_project/blocs/cart/cart_bloc.dart';
 import 'package:ecommerce_project/blocs/wishlist/wishlist_bloc.dart';
 import 'package:ecommerce_project/config/app_router.dart';
 import 'package:ecommerce_project/config/theme.dart';
@@ -20,6 +21,14 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: theme(),
       onGenerateRoute: AppRouter.onGenerateRoute,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: theme(),
+        onGenerateRoute: AppRouter.onGenerateRoute,
+        initialRoute: HomeScreen.routeName,
+        home: const HomeScreen(),
+      ),
     );
   }
 }

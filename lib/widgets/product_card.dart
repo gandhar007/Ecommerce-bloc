@@ -1,7 +1,10 @@
 // ignore_for_file: deprecated_member_use
+import 'package:ecommerce_project/blocs/cart/cart_bloc.dart';
+import 'package:ecommerce_project/blocs/wishlist/wishlist_bloc.dart';
 import 'package:ecommerce_project/models/product_model.dart';
 import 'package:ecommerce_project/screens/product/product_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -81,21 +84,37 @@ class ProductCard extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                      child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.add_circle,
-                            color: Colors.white,
-                          )),
+                      child: BlocBuilder<CartBloc, CartState>(
+                        builder: (context, state) {
+                          return IconButton(
+                              onPressed: () {
+                                context
+                                    .read<CartBloc>()
+                                    .add(CartProductAdded(product));
+                              },
+                              icon: const Icon(
+                                Icons.add_circle,
+                                color: Colors.white,
+                              ));
+                        },
+                      ),
                     ),
                     isWishlist
                         ? Expanded(
-                            child: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.remove_circle,
-                                  color: Colors.white,
-                                )),
+                            child: BlocBuilder<WishlistBloc, WishlistState>(
+                              builder: (context, state) {
+                                return IconButton(
+                                    onPressed: () {
+                                      context
+                                          .read<WishlistBloc>()
+                                          .add(RemoveWishlistProduct(product));
+                                    },
+                                    icon: const Icon(
+                                      Icons.remove_circle,
+                                      color: Colors.white,
+                                    ));
+                              },
+                            ),
                           )
                         : const SizedBox()
                   ],
