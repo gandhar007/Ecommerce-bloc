@@ -21,11 +21,7 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
 
   void _onStartWishlist(event, Emitter<WishlistState> emit) {
     emit(WishlistLoading());
-    try {
-      emit(const WishlistLoaded(Wishlist()));
-    } catch (_) {
-      emit(WishlistError());
-    }
+    emit(WishlistLoaded(Wishlist()));
   }
 
   void _onAddWishlistProduct(event, Emitter<WishlistState> emit) {
