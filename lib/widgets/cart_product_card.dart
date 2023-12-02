@@ -7,7 +7,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartProductCard extends StatelessWidget {
   final Product product;
-  const CartProductCard({super.key, required this.product});
+  final int quantity;
+  const CartProductCard(
+      {super.key, required this.product, required this.quantity});
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +53,8 @@ class CartProductCard extends StatelessWidget {
                 },
               ),
               Text(
-                '1',
-                style: Theme.of(context).textTheme.headline5,
+                '$quantity',
+                style: Theme.of(context).textTheme.headline4,
               ),
               BlocBuilder<CartBloc, CartState>(
                 builder: (context, state) {
